@@ -1,0 +1,111 @@
+/*************
+  Blue Theme
+ *************/
+/* header */
+.tablesorter-blue .header,
+.tablesorter-blue .tablesorter-header {
+	/* black (unsorted) double arrow */
+	background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==);
+	/* white (unsorted) double arrow */
+	/* background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); */
+	/* image */
+	/* background-image: url(images/black-unsorted.gif); */
+	background-repeat: no-repeat;
+	background-position: center right;
+	padding: 4px 18px 4px 4px;
+	white-space: normal;
+	cursor: pointer;
+}
+.tablesorter-blue .headerSortUp,
+.tablesorter-blue .tablesorter-headerSortUp,
+.tablesorter-blue .tablesorter-headerAsc {
+	background-color: rgb(238,238,238);
+	color: rgb(68,68,68);
+	/* black asc arrow */
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7);
+	/* white asc arrow */
+	/* background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjI8Bya2wnINUMopZAQA7); */
+	/* image */
+	/* background-image: url(images/black-asc.gif); */
+}
+.tablesorter-blue .headerSortDown,
+.tablesorter-blue .tablesorter-headerSortDown,
+.tablesorter-blue .tablesorter-headerDesc {
+	background-color: rgb(238,238,238);
+	color: rgb(68,68,68);
+	/* black desc arrow */
+	background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7);
+	/* white desc arrow */
+	/* background-image: url(data:image/gif;base64,R0lGODlhFQAEAIAAAP///////yH5BAEAAAEALAAAAAAVAAQAAAINjB+gC+jP2ptn0WskLQA7); */
+	/* image */
+	/* background-image: url(images/black-desc.gif); */
+}
+.tablesorter-blue thead .sorter-false {
+	background-image: none;
+	padding: 4px;
+}
+
+/* tfoot */
+.tablesorter-blue tfoot .tablesorter-headerSortUp,
+.tablesorter-blue tfoot .tablesorter-headerSortDown,
+.tablesorter-blue tfoot .tablesorter-headerAsc,
+.tablesorter-blue tfoot .tablesorter-headerDesc {
+	/* remove sort arrows from footer */
+	background-image: none;
+}
+
+/* table processing indicator */
+.tablesorter-blue .tablesorter-processing {
+	background-position: center center !important;
+	background-repeat: no-repeat !important;
+	/* background-image: url(../addons/pager/icons/loading.gif) !important; */
+	background-image: url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=') !important;
+}
+
+/* Zebra Widget - row alternating colors */
+.tablesorter-blue tbody tr.odd td {
+	background-color: rgb(238,238,238);
+}
+.tablesorter-blue tbody tr.even td {
+  background-color: rgb(215,215,215);
+}
+
+/* Column Widget - column sort colors */
+.tablesorter-blue td.primary,
+.tablesorter-blue tr.odd td.primary {
+	background-color: transparent;
+}
+.tablesorter-blue tr.even td.primary {
+	background-color: rgb(232,232,232);
+}
+.tablesorter-blue td.secondary,
+.tablesorter-blue tr.odd td.secondary {
+	background-color: #c2d1f0;
+}
+.tablesorter-blue tr.even td.secondary {
+	background-color: rgb(232,232,232);
+}
+.tablesorter-blue td.tertiary,
+.tablesorter-blue tr.odd td.tertiary {
+	background-color: rgb(232,232,232);
+}
+.tablesorter-blue tr.even td.tertiary {
+	background-color: #ebf0fa;
+}
+
+/* filter widget */
+.tablesorter-blue .tablesorter-filter-row td {
+	background: #eee;
+	line-height: normal;
+	text-align: center; /* center the input */
+	-webkit-transition: line-height 0.1s ease;
+	-moz-transition: line-height 0.1s ease;
+	-o-transition: line-height 0.1s ease;
+	transition: line-height 0.1s ease;
+}
+/* optional disabled input styling */
+.tablesorter-blue .tablesorter-filter-row .disabled {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+	cursor: not-allowed;
+}

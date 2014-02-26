@@ -1,0 +1,44 @@
+// Page size
+// -------------------------
+$width:									960px;
+
+// Primary Colors
+// -------------------------
+$background_color: 			rgb(245,245,245) !default;
+$text_color:						rgb(68,68,68) !default;
+$text_fade:							darken($background_color, 15%) !default;
+$highlight_color:				darken($background_color, 5%) !default;
+
+// Secondary Colors
+// -------------------------
+$link_color:						$text_color !default;
+$link_color_hover:			darken($background_color, 15%) !default;
+
+// Grays
+// -------------------------
+$black:                 #000 !default;
+$gray_darker:           #222 !default;
+$gray_dark:             #333 !default;
+$gray:                  #555 !default;
+$gray_light:            #999 !default;
+$gray_lighter:          #eee !default;
+$white:                 #fff !default;
+
+// Fonts
+// -------------------------
+$font_family: 					"adelle-sans",sans-serif !default;
+$font_weight:						300;
+$font_size:          		1.1em !default;
+$line_height:        		1.4 !default;
+
+$font_size_tablet:			1.2em !default;
+
+$font_size_phone:				1.1em !default;
+$line_height_phone: 		1.3 !default;
+
+// Component sizing
+// -------------------------
+
+$font_size_large:       1em * 1.25 !default;
+$font_size_small:       1em * 0.85 !default;
+$font_size_mini:        1em * 0.75 !default;

@@ -1,0 +1,10 @@
+{% set app_url = constant('config::URL') %}
+<nav>
+		<ul>
+		  {% if title == 'Home' %}
+  			<li class="active"><a href="{{ app_url }}/">Home</a></li>
+  		{% else %}
+  		  <li><a href="{{ app_url }}/">Home</a></li>
+  		{% endif %}
+		</ul>
+</nav>

@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'scriptures';
+	src:url('../fonts/scriptures.eot');
+	src:url('../fonts/scriptures.eot?#iefix') format('embedded-opentype'),
+		url('../fonts/scriptures.svg#scriptures') format('svg'),
+		url('../fonts/scriptures.woff') format('woff'),
+		url('../fonts/scriptures.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'scriptures';
+	content: attr(data-icon);
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: 'scriptures';
+	font-style: normal;
+	speak: none;
+	font-weight: normal;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-fleuron:before {
+	content: "\6e";
+}
+.icon-church-logo:before {
+	content: "\21";
+}

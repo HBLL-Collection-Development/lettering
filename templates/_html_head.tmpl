@@ -1,0 +1,26 @@
+{% set app_url = constant('config::URL') %}
+{% spaceless %}
+{% autoescape false %}
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+	<title>{{ title }}</title>
+
+  <link rel='stylesheet' href='assets/styles/styles.css' type='text/css'/>
+  <script type="text/javascript" src="//use.typekit.net/cqm0tii.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+</head>
+<body>
+    <header>
+      <h1>Lettering Report</h1>
+    </header>
+    
+    {% include '_navigation.tmpl' %}
+    
+    <section>
+
+{% endautoescape %}
+{% endspaceless %}
