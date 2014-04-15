@@ -3,33 +3,43 @@
   * Displays form for submitting list of barcodes
   *
   * @author Jared Howland <sirsi@jaredhowland.com>
-  * @version 2014-02-26
+  * @version 2014-04-15
   * @since 2014-02-22
   *
   */
 require_once 'config.php';
 
+// Get all barcodes entered into form and put them into an array
 $item_ids = explode("\n", $_REQUEST['barcodes']);
 
+// Get data for each barcode using SIRSI API calls
 $data = get_data($item_ids);
 
-// Debugging function
-function pa($array, $kill = TRUE) {
-  echo '<pre>';
-  print_r($array);
-  echo '</pre>';
-  if($kill) {
-    die();
-  }
-}
-
+// Format the data to only include necessary information for our application
 $clean_data = format_data($data);
 
+// Give output to template for display to user
+$html = array('title' => 'Home', 'html' => $clean_data);
+template::display('report.tmpl', $html);
+
+
+/***************************
+ *        FUNCTIONS        *
+ ***************************/
+
+/**
+ * Constructs API call(s) and returns data for all barcodes
+ *
+ * @param array Array with all barcodes entered into form
+ * @return array Array with just relevant data from API calls included
+ **/
 function get_data($item_ids) {
+  // Loop through all barcodes
+  // Sirsi technically allows aggregating multiple calls but does not return all necessary information for each returned result for this to be useful for us
   foreach($item_ids AS $item_id) {
     $item_id = trim($item_id);
     // Create search parameters for Sirsi API
-    $parameters = 'marcEntryFilter=ALL&includeItemInfo=true&json=true&itemID=' . $item_id;
+    $parameters = 'marcEntryFilter=ALL&includeItemInfo=true&includeCallNumberSummary=true&json=true&itemID=' . $item_id;
     // Construct URL for Sirsi API call
     $url = config::API_BASE_URL . config::API_SEARCH_URL . $parameters . '&clientID=' . config::CLIENT_ID;
     // Get the results of the API call
@@ -51,12 +61,21 @@ function get_data($item_ids) {
   return $all_data;
 }
 
+
+/**
+ * Extracts relevant information from results of all API calls
+ *
+ * @param array Array with data from all API calls
+ * @return array Array with just relevant data from API calls included
+ **/
 function format_data($data) {
   foreach($data AS $record) {
     $item_id = $record['item_id'];
     $title_info = $record['data']['TitleInfo'][0];
+    // If no result found
     if(empty($title_info)) {
       $all_records[] = array('error' => 'No item found for ' . $item_id . '.');
+    // If result is found
     } else {
       $title_id = $title_info['titleID'];
       // Home location and call number
@@ -68,8 +87,8 @@ function format_data($data) {
             $call_number = $record_call_number;
             $home_location = $ItemInfo['homeLocationID'];
           }
-          if($ItemInfo['itemTypeID'] == 'SERIAL') {
-            // Serials have a different item ID for some reason
+          // Non-BOOK items have a different location for call number data
+          if($ItemInfo['itemTypeID'] != 'BOOK') {
             $call_number = $record_call_number;
           }
         }
@@ -83,41 +102,47 @@ function format_data($data) {
         $text            = $field['text'];
         $unformattedText = $field['unformattedText'];
         if($entryID == '001') { $control_number = $text; }
+
         if($entryID == '020') { $isbn = $text; }
         if($entryID == '100') { $author = $text; }
         if($entryID == '245') { $title = $text; }
+        // Vernacular title
         if($entryID == '880' && strpos($unformattedText, '|6245-01|') !== false) { $linked_title = $text; }
         if($entryID == '260') {
           $publisher = $text;
           $pub_array = explode('|c', $unformattedText);
-          $pub_date = trim($pub_array[1], '. ');
+          $pub_date  = trim($pub_array[1], '. ');
         }
-      
+
       }
-    
+
       $all_records[] = array('item_id' => $item_id, 'title_id' => $title_id, 'home_location' => $home_location, 'call_number' => $call_number, 'control_number' => $control_number, 'isbn' => $isbn, 'author' => $author, 'title' => $title, 'linked_title' => $linked_title, 'pub_date' => $pub_date, 'publisher' => $publisher);
-    
-      $item_id = null;
-      $title_id = null;
-      $home_location = null;
-      $call_number = null;
+
+      // Reset all variables for next item being searched
+      $item_id        = null;
+      $title_id       = null;
+      $home_location  = null;
+      $call_number    = null;
       $control_number = null;
-      $isbn = null;
-      $author = null;
-      $title = null;
-      $linked_title = null;
-      $pub_date = null;
-      $publisher = null;
+      $isbn           = null;
+      $author         = null;
+      $title          = null;
+      $linked_title   = null;
+      $pub_date       = null;
+      $publisher      = null;
     }
   }
   return $all_records;
 }
 
 
-$html = array('title' => 'Home', 'html' => $clean_data);
-template::display('report.tmpl', $html);
-
-// http://25labs.com/alternative-for-file_get_contents-using-curl/
+/**
+ * Uses CURL to grab the JSON from SIRSI
+ * From http://25labs.com/alternative-for-file_get_contents-using-curl/
+ *
+ * @param string URL of API call
+ * @return string Data returned by API call
+ **/
 function get_json($url) {
   $curl = curl_init();
   // $userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.117 Safari/537.36';
@@ -133,14 +158,35 @@ function get_json($url) {
   curl_setopt($curl, CURLOPT_FRESH_CONNECT, TRUE); //Force new connection rather than using cache
   curl_setopt($curl, CURLOPT_AUTOREFERER, TRUE); //To automatically set the Referer: field in requests where it follows a Location: redirect.
   curl_setopt($curl, CURLOPT_TIMEOUT, 10); //The maximum number of seconds to allow cURL functions to execute.
-  
+
+  // If not production, give verbose feedback on curl problems
   if(config::DEVELOPMENT) {
     curl_setopt($curl, CURLOPT_VERBOSE, TRUE);
     $verbose = fopen('php://temp', 'rw+');
     curl_setopt($curl, CURLOPT_STDERR, $verbose);
   }
 
+  // Execute query
   $contents = curl_exec($curl);
+
+  // Report errors if they occur
+  curl_error_report($curl, $verbose);
+
+  curl_close($curl);
+  return $contents;
+}
+
+/**
+ * Sends CURL error message to user when needed (and only when in development)
+ * From http://25labs.com/alternative-for-file_get_contents-using-curl/
+ *
+ * @param mixed
+ *        string  If there is a result when making CURL call, will return data
+ *        boolean If there is no result when making CURL call, will return FALSE
+ * @return null If error exists, prints error directly to user and kills everything
+ *              Otherwise, it does not return anything
+ **/
+function curl_error_report($curl, $verbose = null) {
   if(curl_errno($curl)) {
     if(config::DEVELOPMENT) {
       rewind($verbose);
@@ -162,6 +208,5 @@ EOD;
     curl_close($curl);
     die();
   }
-  curl_close($curl);
-  return $contents;
+  return;
 }

@@ -9,6 +9,7 @@
   */
 require_once 'config.php';
 
+// Create form to submit barcodes
 $html = <<<HTML
 	<h1>Lettering Report</h1>
 		
@@ -19,7 +20,7 @@ $html = <<<HTML
 	</form>
 HTML;
   
-
+// Send form to template for display to user
 $html = array('title' => 'Home', 'html' => $html);
 template::display('generic.tmpl', $html);
 ?>
