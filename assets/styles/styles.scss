@@ -1,28 +1,5 @@
-//// Here's where we define some default constants
-//@import "partials/variables";
-//@import "partials/mixins";
-//
-//// Normalize: a modern CSS reset
-//@import "partials/normalize";
-//
-//// Fonts
-//@import "partials/fonts";
-//
-//// HTML5 Boilerplate Styles
-//@import "partials/h5bp";
-//
-//// jQuery UI Styles
-//@import "partials/jquery_ui";
-
-// Override default values
-//$font_size: 1.4em;
-//$tabletFontSize: 1.2em;
-//$phoneFontSize: 1.1em;
-//$phoneLineHeight: 1.3em;
-
 @import "partials/variables.scss";
 @import "partials/mixins.scss";
 @import "partials/normalize.scss";
 @import "partials/modernscale.scss";
-@import "partials/fonts.scss";
 @import "partials/sirsi.scss";
