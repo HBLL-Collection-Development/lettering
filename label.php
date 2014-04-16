@@ -87,8 +87,13 @@ function format_data($data) {
             $call_number = $record_call_number;
             $home_location = $ItemInfo['homeLocationID'];
           }
-          // Non-BOOK items have a different location for call number data
-          if($ItemInfo['itemTypeID'] != 'BOOK') {
+          // Indicate whether the item is a SERIAL because base call number
+          // does not include subfield z (can remove once SIRSI updates APIs
+          // to match documentation)
+          if($ItemInfo['itemTypeID'] == 'SERIAL') {
+            $call_number = $record_call_number . '<br/><span class="warning">(SERIAL)</span>';
+          } // Non-BOOK items have a different location for call number data
+          elseif($ItemInfo['itemTypeID'] != 'BOOK') {
             $call_number = $record_call_number;
           }
         }

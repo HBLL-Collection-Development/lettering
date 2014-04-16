@@ -13,7 +13,7 @@ a {
 	text-decoration: none;
 	color: $link_color;
 	border-bottom: 1px dotted $text_color;
-	
+
 	&:hover {
 		background-color: $link_color_hover;
 	}
@@ -38,23 +38,23 @@ nav {
 	clear: both;
 	font-size: 1.2em;
 	background: $highlight_color;
-	
+
 	ul {
 		text-transform: uppercase;
 	  @include page-size($width);
 		padding-bottom: 0;
 		list-style: none;
-		
+
 		li {
 			display: inline;
-			
+
 			&.active {
 				a {
 					background-color: $link_color_hover;
 				}
 			}
 		}
-		
+
 		a {
 			border: none;
 			padding: 1em 1em 1px 1em;
@@ -85,26 +85,31 @@ table{
 		vertical-align:top;
 	  overflow: hidden;
 	}
-	
+
 	.w4-5 {
 	  width: 4.5em;
 	}
-	
+
 	.w6 {
 		width: 6em;
 	}
-	
+
 	.w14 {
 	  width: 14em;
 	}
-	
+
 	.error {
 		margin-top: 1em;
 		padding: 1em 2em;
 		border: 3px solid #f00;
 		background-color: #ffa;
 	}
-	
+
+	.warning {
+		background-color: #ffa;
+		padding: 3px;
+	}
+
 	thead {
 		background-color: $text_color;
 		color: $background_color;
@@ -115,12 +120,12 @@ table{
 		td {
 			padding: .5em;
 		}
-		
+
 		// Every 4th row starting with row 3
 		 tr:nth-child(2n+2) {
 		 	background: $highlight_color;
 		 }
-		
+
 		.edit {
 			text-align: center;
 			vertical-align: middle;
@@ -135,7 +140,7 @@ table{
 				}
 			}
 		}
-		
+
 		.resource {
 			font-size: 1.2em;
 		}
@@ -152,11 +157,11 @@ form {
 	  margin: 1.25em 0 0 0;
 	  padding: 1.25em 0 0 0;
 	}
-	
+
 	#url {
 		min-width: 40em;
 	}
-	
+
 	#notes {
 		font-size: .8em;
 		min-width: 40em;
@@ -168,7 +173,7 @@ ul {
   font-weight: normal;
   color: #999;
   padding: 0.5em 0;
-	
+
 	li {
 	  padding-left: 0.25em;
 	}
@@ -179,7 +184,7 @@ ul {
 		padding: .5em 0;
 		margin: 0;
 	}
-	
+
 	input#num_records {
 		max-width: 10em;
 	}
@@ -219,24 +224,24 @@ ul {
 	  display: block;
 	  border: 1px solid $highlight_color;
 	  _zoom: 1;
-		
+
 		&:hover {
  		 	background: #efefef;
 	 	}
-		
+
 		a {
 		  display: block;
 			border: none;
 		  padding: 0.4em 4.5em 0.4em 0.5em;
 		  position: relative;
 		  z-index: 2;
-			
+
 			&:hover {
 				background-color: transparent;
 			}
 		}
 	}
-	
+
 	.count {
 	  display: block;
 	  position: absolute;
@@ -249,7 +254,7 @@ ul {
 	  font-size: 0.875em;
 	  line-height: 2em;
 	}
-	
+
 	.index {
 	  display: block;
 	  position: absolute;

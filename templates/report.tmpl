@@ -14,7 +14,7 @@
   <tr>
     <td>{% if record.home_location == 'LEE-LIB' %}{{ record.call_number }}{% else %}<strong>{{ record.home_location }}</strong><br/>{{ record.call_number }}{% endif %}</td>
     <td><a href="http://search.lib.byu.edu/byu/id:byu{{ record.title_id}}">{{ record.title }}</a>{% if record.linked_title %}<br/>{{ record.linked_title}}{% endif %}</td>
-    <td>{{ record.item_id }}</td>
+    <td><a href="http://catalog.lib.byu.edu/uhtbin/pcnum/{{ record.title_id}}">{{ record.item_id }}</a></td>
     <td>{{ record.control_number }}</td>
     <td>{{ record.isbn }}</td>
     <td>{{ record.author }}</td>
@@ -22,7 +22,7 @@
     <td>{{ record.publisher }}</td>
   </tr>
 {% endif %}
-  
+
 {% endfor %}
 
 </table>

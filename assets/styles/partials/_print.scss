@@ -16,6 +16,10 @@ a:visited {
 		border: none;
 }
 
+.error, .warning {
+  font-weight: bold;
+}
+
 pre,
 blockquote {
     border: 1px solid #ccc;
