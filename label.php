@@ -116,7 +116,7 @@ function format_data($data) {
         if($entryID == '260') {
           $publisher = $text;
           $pub_array = explode('|c', $unformattedText);
-          $pub_date  = trim($pub_array[1], '. ');
+          $pub_date  = trim($pub_array[1], '-. ');
         }
 
       }
