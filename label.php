@@ -10,7 +10,7 @@
 require_once 'config.php';
 
 // Get all barcodes entered into form and put them into an array
-$item_ids = explode("\n", $_REQUEST['barcodes']);
+$item_ids = explode("\n", $_REQUEST['barcodes']); // Access is limited to BYU's IP range so I am carelessly not cleaning the input before using it
 
 // Get data for each barcode using SIRSI API calls
 $data = get_data($item_ids);
