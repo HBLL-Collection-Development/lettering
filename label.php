@@ -78,14 +78,15 @@ function format_data($data) {
     // If result is found
     } else {
       $title_id = $title_info['titleID'];
-      // Home location and call number
+      // Current and home locations and call number
       foreach($title_info['CallInfo'] AS $CallInfo) {
         $record_call_number = $CallInfo['callNumber'];
         foreach($CallInfo['ItemInfo'] AS $ItemInfo) {
           $record_item_id = $ItemInfo['itemID'];
           if($record_item_id == $item_id) {
-            $call_number = $record_call_number;
-            $home_location = $ItemInfo['homeLocationID'];
+            $call_number      = $record_call_number;
+            $current_location = $ItemInfo['currentLocationID'];
+            $home_location    = $ItemInfo['homeLocationID'];
           }
           // Indicate whether the item is a SERIAL because base call number
           // does not include subfield z (can remove once SIRSI updates APIs
@@ -121,20 +122,21 @@ function format_data($data) {
 
       }
 
-      $all_records[] = array('item_id' => $item_id, 'title_id' => $title_id, 'home_location' => $home_location, 'call_number' => $call_number, 'control_number' => $control_number, 'isbn' => $isbn, 'author' => $author, 'title' => $title, 'linked_title' => $linked_title, 'pub_date' => $pub_date, 'publisher' => $publisher);
+      $all_records[] = array('item_id' => $item_id, 'title_id' => $title_id, 'current_location' => $current_location, 'home_location' => $home_location, 'call_number' => $call_number, 'control_number' => $control_number, 'isbn' => $isbn, 'author' => $author, 'title' => $title, 'linked_title' => $linked_title, 'pub_date' => $pub_date, 'publisher' => $publisher);
 
       // Reset all variables for next item being searched
-      $item_id        = null;
-      $title_id       = null;
-      $home_location  = null;
-      $call_number    = null;
-      $control_number = null;
-      $isbn           = null;
-      $author         = null;
-      $title          = null;
-      $linked_title   = null;
-      $pub_date       = null;
-      $publisher      = null;
+      $item_id          = null;
+      $title_id         = null;
+      $current_location = null;
+      $home_location    = null;
+      $call_number      = null;
+      $control_number   = null;
+      $isbn             = null;
+      $author           = null;
+      $title            = null;
+      $linked_title     = null;
+      $pub_date         = null;
+      $publisher        = null;
     }
   }
   return $all_records;

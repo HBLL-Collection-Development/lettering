@@ -5,7 +5,7 @@
 
 
 <table>
-  <tr><th class="w6">Call Number</th><th class="w14">Title</th><th>Barcode</th><th>Control Number</th><th>ISBN</th><th>Author</th><th>Pub Date</th><th>Publisher</th></tr>
+  <tr><th class="w6">Call Number</th><th class="w14">Title</th><th>Barcode</th><th>Control Number</th><th>ISBN</th><th>Author</th><th>Pub Date</th><th>Publisher</th><th>Current Location</th></tr>
 {% for record in html %}
 
 {% if record.error %}
@@ -20,6 +20,7 @@
     <td>{{ record.author }}</td>
     <td>{{ record.pub_date }}</td>
     <td>{{ record.publisher }}</td>
+    <td>{{ record.current_location}}</td>
   </tr>
 {% endif %}
 
