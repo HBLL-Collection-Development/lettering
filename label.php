@@ -100,7 +100,7 @@ function format_data($data) {
         }
       }
       // MARC record data
-      $marc = $record['data']['TitleInfo'][0]['BibliographicInfo']['MarcEntryInfo'];
+      $marc = $title_info['BibliographicInfo']['marcEntryInfo'];
       foreach($marc AS $field) {
         $label           = $field['label'];
         $entryID         = $field['entryID'];
