@@ -38,7 +38,7 @@ class config {
       error_reporting(0);
     }
   }
-  
+
 } // End class
 
 

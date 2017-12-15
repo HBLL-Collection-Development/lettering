@@ -1,12 +1,12 @@
 <?php
 /**
-  * Displays form for submitting list of barcodes
-  *
-  * @author Jared Howland <sirsi@jaredhowland.com>
-  * @version 2014-02-26
-  * @since 2014-02-22
-  *
-  */
+ * Displays form for submitting list of barcodes
+ *
+ * @author  Jared Howland <sirsi@jaredhowland.com>
+ * @version 2014-02-26
+ * @since   2014-02-22
+ *
+ */
 require_once 'config.php';
 
 // Create form to submit barcodes
@@ -19,7 +19,7 @@ $html = <<<HTML
 		<button class="button" type="submit">Run report</button>
 	</form>
 HTML;
-  
+
 // Send form to template for display to user
 $html = array('title' => 'Home', 'html' => $html);
 template::display('generic.tmpl', $html);
